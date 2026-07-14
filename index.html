@@ -1,40 +1,165 @@
-Your repository was created successfully, but it is still **empty**. You now need to upload the HTML file. ([GitHub][1])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Trial Courts Reference Guide</title>
+<style>
+:root {
+  --navy:#0f2747; --blue:#2f6fed; --blue-dark:#1f56c2; --blue-soft:#edf3ff;
+  --bg:#f4f7fb; --card:#fff; --text:#1d2939; --muted:#667085; --line:#e4e9f1;
+  --green:#16845b; --green-soft:#eaf8f1; --red:#c53f4f; --red-soft:#fff0f2;
+  --shadow:0 18px 50px rgba(15,39,71,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,#eef4ff 0,#f6f8fc 300px)}
+button,select,input{font:inherit}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1240px;margin:auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:12px} .logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;font-weight:800}
+.brand-title{font-weight:800} .brand-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.hero{max-width:1240px;margin:auto;padding:44px 24px 20px}
+.hero-card{border-radius:28px;padding:38px;color:#fff;background:linear-gradient(135deg,var(--navy),#174780 58%,var(--blue));box-shadow:var(--shadow)}
+.hero h1{font-size:40px;margin:0 0 12px} .hero p{margin:0;max-width:780px;line-height:1.7;color:rgba(255,255,255,.84)}
+.main{max-width:1240px;margin:auto;padding:10px 24px 48px}
+.panel,.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.panel{padding:22px}
+.filters{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:14px;align-items:end}
+.field label{display:block;margin-bottom:8px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--muted)}
+select,input{width:100%;height:48px;border:1px solid #d7deea;border-radius:13px;padding:0 14px;outline:none;background:#fff}
+select:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(47,111,237,.11)}
+.primary,.secondary{height:48px;border:0;border-radius:13px;padding:0 18px;font-weight:800;cursor:pointer}
+.primary{color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-dark));box-shadow:0 10px 24px rgba(47,111,237,.24)}
+.secondary{color:var(--navy);background:#eef3f9}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.notice{margin-top:16px;padding:12px 14px;border-radius:12px;background:#fff8e6;color:#805b00;font-size:12px;line-height:1.5}
+.selection{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:30px 0 16px}
+.selection h2{margin:0;font-size:30px} .selection p{margin:6px 0 0;color:var(--muted)}
+.badge{padding:9px 13px;border-radius:999px;background:var(--blue-soft);color:var(--blue-dark);font-size:12px;font-weight:800}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{padding:22px} .card h3{margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-weight:900}
+.included .icon{color:var(--green);background:var(--green-soft)} .excluded .icon{color:var(--red);background:var(--red-soft)}
+.card-body{min-height:220px;padding:16px;border:1px dashed var(--line);border-radius:14px;background:#fafbfd;line-height:1.7}
+.card-body ul{margin:0;padding-left:20px} .card-body li{margin:7px 0}
+.guidelines{margin-top:18px} .guidelines .icon{color:var(--blue);background:var(--blue-soft)}
+.empty{color:var(--muted);font-style:italic}
+@media(max-width:960px){.filters{grid-template-columns:1fr 1fr}.search-cell{grid-column:span 2}.search-cell button{width:100%}}
+@media(max-width:720px){.hero h1{font-size:30px}.hero-card{padding:26px}.filters,.cards{grid-template-columns:1fr}.search-cell{grid-column:auto}.selection{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <div class="brand"><div class="logo">TC</div><div><div class="brand-title">Trial Court Guidelines</div><div class="brand-sub">US Court Reference Guide</div></div></div>
+</div></div>
 
-### Next steps
+<section class="hero"><div class="hero-card">
+  <h1>Search trial court guidance by state and county.</h1>
+  <p>Select a state and court, or type a state/court name. Click Search to automatically display possible included documents, excluded documents, and starter collection guidelines.</p>
+</div></section>
 
-1. Open your repository:
-   `urieltrialreed-creator / index.html`
+<main class="main">
+<section class="panel">
+  <div class="filters">
+    <div class="field"><label>STATE</label><select id="state"></select></div>
+    <div class="field"><label>COURT / COUNTY</label><select id="court"></select></div>
+    <div class="field"><label>QUICK SEARCH</label><input id="quickSearch" placeholder="Example: Ohio Butler or Pennsylvania York"></div>
+    <div class="search-cell"><button class="primary" id="searchBtn">Search</button></div>
+  </div>
+  <div class="actions">
+    <button class="secondary" id="copyLink">Copy selected link</button>
+    <button class="secondary" id="reset">Reset</button>
+  </div>
+  <div class="notice"><strong>Starter guidance only:</strong> the automatic lists are general examples and must be verified against official state, county, and local court rules before use.</div>
+</section>
 
-2. Click **Add file** or **uploading an existing file**.
+<section class="selection">
+  <div><h2 id="courtTitle">Select a court</h2><p id="stateLabel">Choose a state and court, then click Search.</p></div>
+  <div class="badge" id="category">Reference Guide</div>
+</section>
 
-3. Upload this file:
-   [Download the searchable HTML](sandbox:/mnt/data/Modern_Trial_Court_Guide_With_Search.html)
+<section class="cards">
+  <article class="card included"><h3><span class="icon">✓</span>Possible Included Documents</h3><div id="included" class="card-body empty">Search for a court to display possible included documents.</div></article>
+  <article class="card excluded"><h3><span class="icon">×</span>Possible Excluded Documents</h3><div id="excluded" class="card-body empty">Search for a court to display possible excluded documents.</div></article>
+</section>
 
-4. Before uploading, rename it on your computer to:
+<section class="card guidelines"><h3><span class="icon">i</span>Starter Collection Guidelines</h3><div id="guidelines" class="card-body empty">Search for a court to display starter guidelines.</div></section>
+</main>
 
-```text
-index.html
-```
+<script>
+const records = [{"Court": "Los Angeles", "State": "California"}, {"Court": "Butte", "State": "California"}, {"Court": "Orange", "State": "California"}, {"Court": "San Diego", "State": "California"}, {"Court": "San Francisco", "State": "California"}, {"Court": "Santa Clara", "State": "California"}, {"Court": "Alameda", "State": "California"}, {"Court": "Sacramento", "State": "California"}, {"Court": "Riverside", "State": "California"}, {"Court": "Fresno", "State": "California"}, {"Court": "Miami-Dade", "State": "Florida"}, {"Court": "Broward", "State": "Florida"}, {"Court": "Orange", "State": "Florida"}, {"Court": "Hillsborough", "State": "Florida"}, {"Court": "Palm Beach", "State": "Florida"}, {"Court": "Duval", "State": "Florida"}, {"Court": "Pinellas", "State": "Florida"}, {"Court": "Lee", "State": "Florida"}, {"Court": "Polk", "State": "Florida"}, {"Court": "Seminole", "State": "Florida"}, {"Court": "Fulton", "State": "Georgia"}, {"Court": "Cobb", "State": "Georgia"}, {"Court": "DeKalb", "State": "Georgia"}, {"Court": "Gwinnett", "State": "Georgia"}, {"Court": "Chatham", "State": "Georgia"}, {"Court": "Honolulu", "State": "Hawaii"}, {"Court": "Hawaii", "State": "Hawaii"}, {"Court": "Maui", "State": "Hawaii"}, {"Court": "Kauai", "State": "Hawaii"}, {"Court": "Johnson", "State": "Kansas"}, {"Court": "Sedgwick", "State": "Kansas"}, {"Court": "Shawnee", "State": "Kansas"}, {"Court": "Douglas", "State": "Kansas"}, {"Court": "Wyandotte", "State": "Kansas"}, {"Court": "Jefferson", "State": "Kentucky"}, {"Court": "Fayette", "State": "Kentucky"}, {"Court": "Kenton", "State": "Kentucky"}, {"Court": "Boone", "State": "Kentucky"}, {"Court": "Warren", "State": "Kentucky"}, {"Court": "Jefferson Parish", "State": "Louisiana"}, {"Court": "Caddo Parish", "State": "Louisiana"}, {"Court": "Orleans Parish", "State": "Louisiana"}, {"Court": "East Baton Rouge Parish", "State": "Louisiana"}, {"Court": "St. Tammany Parish", "State": "Louisiana"}, {"Court": "Baltimore County", "State": "Maryland"}, {"Court": "Baltimore City", "State": "Maryland"}, {"Court": "Montgomery", "State": "Maryland"}, {"Court": "Prince George's", "State": "Maryland"}, {"Court": "Anne Arundel", "State": "Maryland"}, {"Court": "Howard", "State": "Maryland"}, {"Court": "Harford", "State": "Maryland"}, {"Court": "Wayne", "State": "Michigan"}, {"Court": "Oakland", "State": "Michigan"}, {"Court": "Macomb", "State": "Michigan"}, {"Court": "Kent", "State": "Michigan"}, {"Court": "Genesee", "State": "Michigan"}, {"Court": "Washtenaw", "State": "Michigan"}, {"Court": "Ingham", "State": "Michigan"}, {"Court": "Hennepin", "State": "Minnesota"}, {"Court": "Ramsey", "State": "Minnesota"}, {"Court": "Dakota", "State": "Minnesota"}, {"Court": "Anoka", "State": "Minnesota"}, {"Court": "Olmsted", "State": "Minnesota"}, {"Court": "St. Louis", "State": "Minnesota"}, {"Court": "Jackson", "State": "Missouri"}, {"Court": "St. Louis County", "State": "Missouri"}, {"Court": "Greene", "State": "Missouri"}, {"Court": "Boone", "State": "Missouri"}, {"Court": "Clay", "State": "Missouri"}, {"Court": "Douglas", "State": "Nebraska"}, {"Court": "Lancaster", "State": "Nebraska"}, {"Court": "Sarpy", "State": "Nebraska"}, {"Court": "Hall", "State": "Nebraska"}, {"Court": "Buffalo", "State": "Nebraska"}, {"Court": "Clark", "State": "Nevada"}, {"Court": "Washoe", "State": "Nevada"}, {"Court": "Carson City", "State": "Nevada"}, {"Court": "Douglas", "State": "Nevada"}, {"Court": "Elko", "State": "Nevada"}, {"Court": "Bergen", "State": "New Jersey"}, {"Court": "Essex", "State": "New Jersey"}, {"Court": "Hudson", "State": "New Jersey"}, {"Court": "Middlesex", "State": "New Jersey"}, {"Court": "Monmouth", "State": "New Jersey"}, {"Court": "Ocean", "State": "New Jersey"}, {"Court": "Union", "State": "New Jersey"}, {"Court": "Morris", "State": "New Jersey"}, {"Court": "Camden", "State": "New Jersey"}, {"Court": "Mercer", "State": "New Jersey"}, {"Court": "Albany", "State": "New York"}, {"Court": "Bronx", "State": "New York"}, {"Court": "Kings", "State": "New York"}, {"Court": "New York", "State": "New York"}, {"Court": "Queens", "State": "New York"}, {"Court": "Richmond", "State": "New York"}, {"Court": "Nassau", "State": "New York"}, {"Court": "Suffolk", "State": "New York"}, {"Court": "Erie", "State": "New York"}, {"Court": "Monroe", "State": "New York"}, {"Court": "Westchester", "State": "New York"}, {"Court": "Onondaga", "State": "New York"}, {"Court": "Mecklenburg", "State": "North Carolina"}, {"Court": "Wake", "State": "North Carolina"}, {"Court": "Guilford", "State": "North Carolina"}, {"Court": "Durham", "State": "North Carolina"}, {"Court": "Forsyth", "State": "North Carolina"}, {"Court": "Buncombe", "State": "North Carolina"}, {"Court": "Cumberland", "State": "North Carolina"}, {"Court": "Franklin", "State": "Ohio"}, {"Court": "Cuyahoga", "State": "Ohio"}, {"Court": "Hamilton", "State": "Ohio"}, {"Court": "Summit", "State": "Ohio"}, {"Court": "Montgomery", "State": "Ohio"}, {"Court": "Lucas", "State": "Ohio"}, {"Court": "Stark", "State": "Ohio"}, {"Court": "Butler", "State": "Ohio"}, {"Court": "Lorain", "State": "Ohio"}, {"Court": "Mahoning", "State": "Ohio"}, {"Court": "Philadelphia", "State": "Pennsylvania"}, {"Court": "Allegheny", "State": "Pennsylvania"}, {"Court": "Montgomery", "State": "Pennsylvania"}, {"Court": "Bucks", "State": "Pennsylvania"}, {"Court": "Chester", "State": "Pennsylvania"}, {"Court": "Delaware", "State": "Pennsylvania"}, {"Court": "Lancaster", "State": "Pennsylvania"}, {"Court": "Lehigh", "State": "Pennsylvania"}, {"Court": "Monroe", "State": "Pennsylvania"}, {"Court": "York", "State": "Pennsylvania"}, {"Court": "Charleston", "State": "South Carolina"}, {"Court": "Greenville", "State": "South Carolina"}, {"Court": "Richland", "State": "South Carolina"}, {"Court": "Horry", "State": "South Carolina"}, {"Court": "Spartanburg", "State": "South Carolina"}, {"Court": "Minnehaha", "State": "South Dakota"}, {"Court": "Pennington", "State": "South Dakota"}, {"Court": "Lincoln", "State": "South Dakota"}, {"Court": "Brown", "State": "South Dakota"}, {"Court": "Brookings", "State": "South Dakota"}, {"Court": "Harris", "State": "Texas"}, {"Court": "Dallas", "State": "Texas"}, {"Court": "Tarrant", "State": "Texas"}, {"Court": "Bexar", "State": "Texas"}, {"Court": "Travis", "State": "Texas"}, {"Court": "Collin", "State": "Texas"}, {"Court": "Denton", "State": "Texas"}, {"Court": "El Paso", "State": "Texas"}, {"Court": "Fort Bend", "State": "Texas"}, {"Court": "Hidalgo", "State": "Texas"}, {"Court": "Salt Lake", "State": "Utah"}, {"Court": "Utah", "State": "Utah"}, {"Court": "Davis", "State": "Utah"}, {"Court": "Weber", "State": "Utah"}, {"Court": "Washington", "State": "Utah"}, {"Court": "Cache", "State": "Utah"}];
+const templates = {"default": {"include": ["Complaints and amended complaints", "Answers, replies, and new matter", "Motions and supporting briefs", "Oppositions and reply briefs", "Petitions and responses", "Trial-court orders and judgments", "Discovery motions filed with the court", "Notices that affect the case status"], "exclude": ["Appellate briefs and appellate orders", "Supreme court filings", "Administrative-agency filings", "Private correspondence not filed with the court", "Unfiled discovery materials", "Duplicate or incomplete documents", "Purely ministerial cover sheets unless required", "Documents from a different jurisdiction"], "guidelines": ["Confirm that the document was filed in the selected trial court.", "Verify the case caption, docket number, filing date, and court name.", "Classify the document as Pleading, Motion, Brief, Order, Petition, or Other.", "Include substantive trial-court filings that affect claims, defenses, relief, or case disposition.", "Exclude appellate, administrative, unfiled, duplicate, or unrelated materials.", "Review the official local rules and court website before final collection."]}, "Louisiana": {"include": ["Petitions and supplemental or amended petitions", "Answers, exceptions, and reconventional demands", "Motions and memoranda", "Oppositions and replies", "Trial-court judgments and orders", "Rule to show cause filings", "Filed discovery motions"], "exclude": ["Appellate writ applications", "Louisiana Supreme Court filings", "Unfiled discovery responses", "Private correspondence", "Duplicate or incomplete scans", "Documents from another parish or court"], "guidelines": ["Treat the listed parish as the trial-court jurisdiction.", "Confirm the judicial district and parish shown on the filing.", "Include substantive pleadings, motions, memoranda, judgments, and orders.", "Exclude appellate writ materials and documents not filed in the trial court.", "Verify against the official clerk or district-court rules."]}, "New York": {"include": ["Summonses and complaints", "Answers and verified pleadings", "Notices of motion and affirmations", "Memoranda of law", "Opposition and reply papers", "Orders, decisions, and judgments", "Article 78 trial-level filings when applicable"], "exclude": ["Appellate Division briefs", "Court of Appeals filings", "Unfiled exhibits or correspondence", "Discovery exchanged but not filed", "Duplicate docket entries", "Documents from another county or court"], "guidelines": ["Confirm whether the filing belongs to Supreme Court or another trial-level court.", "Match the county, index number, caption, and filing date.", "Collect motion papers together with supporting, opposition, and reply documents.", "Exclude appellate materials unless the project specifically requires them.", "Verify county-specific e-filing and local-part rules."]}, "Pennsylvania": {"include": ["Complaints and amended complaints", "Answers, new matter, and counterclaims", "Preliminary objections", "Motions and petitions", "Briefs in support or opposition", "Replies to new matter", "Trial-court orders and judgments"], "exclude": ["Superior Court briefs", "Commonwealth Court appellate filings", "Supreme Court filings", "Unfiled discovery material", "Private correspondence", "Duplicate or unrelated filings"], "guidelines": ["Confirm the filing is from the selected Court of Common Pleas county.", "Classify preliminary objections as pleadings or motions according to your internal rule.", "Collect supporting and opposing briefs with the related motion or objection.", "Exclude appellate filings and documents not filed in the trial court.", "Verify county local rules before finalizing collection."]}};
+const stateEl = document.getElementById('state');
+const courtEl = document.getElementById('court');
+const quickSearch = document.getElementById('quickSearch');
 
-5. After uploading, scroll down and click **Commit changes**.
-
-### Then enable the website
-
-1. Click **Settings**.
-2. Click **Pages** on the left.
-3. Under **Source**, select:
-
-   * **Deploy from a branch**
-   * Branch: **main**
-   * Folder: **/(root)**
-4. Click **Save**.
-
-Your website should then appear at:
-
-```text
-https://urieltrialreed-creator.github.io/index.html/
-```
-
-Because your repository itself is named `index.html`, the final link will include that repository name. A cleaner repository name would be something like `trial-court-guide`, but your current setup can still work.
-
-[1]: https://github.com/urieltrialreed-creator/index.html "urieltrialreed-creator/index.html · GitHub"
+function states() { return [...new Set(records.map(r=>r.State))].sort(); }
+function courts(state) { return records.filter(r=>!state || r.State===state).map(r=>r.Court).sort(); }
+function loadStates() {
+  stateEl.innerHTML = '<option value="">Select a state</option>' + states().map(s=>`<option value="${s}">${s}</option>`).join('');
+}
+function loadCourts(state) {
+  courtEl.innerHTML = '<option value="">Select a court</option>' + [...new Set(courts(state))].map(c=>`<option value="${c}">${c}</option>`).join('');
+}
+function listHTML(items) { return '<ul>' + items.map(x=>`<li>${x}</li>`).join('') + '</ul>'; }
+function findFromQuickSearch(text) {
+  const q = text.trim().toLowerCase();
+  if (!q) return null;
+  return records.find(r => (`${r.State} ${r.Court}`).toLowerCase() === q)
+      || records.find(r => (`${r.State} ${r.Court}`).toLowerCase().includes(q))
+      || records.find(r => q.includes(r.State.toLowerCase()) && q.includes(r.Court.toLowerCase()));
+}
+function renderRecord(record) {
+  if (!record) {
+    alert('Please select a state and court, or enter a valid state/court search.');
+    return;
+  }
+  const t = templates[record.State] || templates.default;
+  document.getElementById('courtTitle').textContent = record.Court;
+  document.getElementById('stateLabel').textContent = record.State;
+  document.getElementById('included').innerHTML = listHTML(t.include);
+  document.getElementById('excluded').innerHTML = listHTML(t.exclude);
+  document.getElementById('guidelines').innerHTML = listHTML(t.guidelines);
+  document.getElementById('included').classList.remove('empty');
+  document.getElementById('excluded').classList.remove('empty');
+  document.getElementById('guidelines').classList.remove('empty');
+  location.hash = encodeURIComponent(record.State) + '/' + encodeURIComponent(record.Court);
+}
+stateEl.addEventListener('change',()=>{ loadCourts(stateEl.value); courtEl.value=''; });
+document.getElementById('searchBtn').addEventListener('click',()=>{
+  let record = null;
+  if (stateEl.value && courtEl.value) {
+    record = records.find(r=>r.State===stateEl.value && r.Court===courtEl.value);
+  } else {
+    record = findFromQuickSearch(quickSearch.value);
+    if (record) {
+      stateEl.value = record.State;
+      loadCourts(record.State);
+      courtEl.value = record.Court;
+    }
+  }
+  renderRecord(record);
+});
+quickSearch.addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('searchBtn').click(); });
+document.getElementById('reset').addEventListener('click',()=>{
+  stateEl.value=''; courtEl.value=''; quickSearch.value=''; loadCourts('');
+  document.getElementById('courtTitle').textContent='Select a court';
+  document.getElementById('stateLabel').textContent='Choose a state and court, then click Search.';
+  document.getElementById('included').textContent='Search for a court to display possible included documents.';
+  document.getElementById('excluded').textContent='Search for a court to display possible excluded documents.';
+  document.getElementById('guidelines').textContent='Search for a court to display starter guidelines.';
+  history.replaceState(null,'',location.pathname);
+});
+document.getElementById('copyLink').addEventListener('click',async()=>{
+  try { await navigator.clipboard.writeText(location.href); alert('Link copied.'); }
+  catch { prompt('Copy this link:', location.href); }
+});
+loadStates(); loadCourts('');
+if(location.hash.includes('/')) {
+  const [s,c] = location.hash.slice(1).split('/').map(decodeURIComponent);
+  const rec = records.find(r=>r.State===s && r.Court===c);
+  if(rec) { stateEl.value=s; loadCourts(s); courtEl.value=c; renderRecord(rec); }
+}
+</script>
+</body>
+</html>
